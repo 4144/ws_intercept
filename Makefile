@@ -1,7 +1,7 @@
 TARGET := ws
 TARGET_TYPE := dll
 PLUGIN_TYPE := dll
-SOURCE := ws misc plugins
+SOURCE := ws misc plugins new
 
 TARGET_OUT := $(TARGET).$(TARGET_TYPE)
 
@@ -14,7 +14,7 @@ SRC := $(BASE)/source
 CC  := i686-w64-mingw32-g++
 
 STD := c++98
-CFLAGS := -std=$(STD) -O3 -fdata-sections -ffunction-sections -flto -DEXPORT -Wall -Wno-reorder -shared
+CFLAGS := -std=$(STD) -O3 -fdata-sections -ffunction-sections -flto -DEXPORT -Wall -Wno-reorder -shared -nostdlib
 LDFLAGS := -lws2_32 -liphlpapi -lpsapi -static -shared -Wl,--gc-sections -Wl,--out-implib,shared/lib$(TARGET).a -s
 
 SOURCES := $(foreach FILE,$(SOURCE),$(FILE).cpp)
