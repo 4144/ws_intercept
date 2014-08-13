@@ -28,6 +28,7 @@ BOOL APIENTRY DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 			break;
 		case DLL_PROCESS_DETACH:
 			unregister_handler(plugin_id_send, WS_HANDLER_SEND);
+			unregister_handler(plugin_id_recv, WS_HANDLER_RECV);
 			if (threadIDConsole)
 				PostThreadMessage(threadIDConsole, WM_QUIT, 0, 0);
 			break;
