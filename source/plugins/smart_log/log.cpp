@@ -72,7 +72,7 @@ static inline void help_text()
 static inline void recv_toggle()
 {
 	if(!plugin_id_recv)
-		plugin_id_recv = register_handler(log_ws, WS_HANDLER_RECV, "");
+		plugin_id_recv = register_handler(log_ws, WS_HANDLER_RECV, (char*)"");
 	else
 	{
 		unregister_handler(plugin_id_recv, WS_HANDLER_RECV);
@@ -83,7 +83,7 @@ static inline void recv_toggle()
 static inline void send_toggle()
 {
 	if(!plugin_id_send)
-		plugin_id_send = register_handler(log_ws, WS_HANDLER_SEND, "");
+		plugin_id_send = register_handler(log_ws, WS_HANDLER_SEND, (char*)"");
 	else
 	{
 		unregister_handler(plugin_id_send, WS_HANDLER_SEND);

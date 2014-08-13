@@ -3,13 +3,13 @@ SOURCE := log
 LWS := -lws
 BASE := ../../..
 
-CC  := i686-w64-mingw32-gcc
+CC  := i686-w64-mingw32-g++
 
-STD := c99
+STD := c++98
 CFLAGS := -std=$(STD) -O3 -fdata-sections -ffunction-sections -flto -Wall
 LDFLAGS := -lws2_32 -static -shared -Wl,--gc-sections -s -L$(BASE)/shared/ $(LWS)
 
-SOURCES := $(foreach FILE,$(SOURCE),$(FILE).c)
+SOURCES := $(foreach FILE,$(SOURCE),$(FILE).cpp)
 
 all: $(BASE)/plugins/$(TARGET).dll
 
