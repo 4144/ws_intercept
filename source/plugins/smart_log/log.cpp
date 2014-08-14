@@ -1,5 +1,6 @@
 #include <winsock2.h>
 #include <windows.h>
+#include <stdio.h>
 #include "log.h"
 
 static DWORD WINAPI setup_console(LPVOID param);
@@ -16,7 +17,7 @@ static DWORD threadIDConsole = 0;
 static DWORD plugin_id_send = 0;
 static DWORD plugin_id_recv = 0;
 
-static BOOL setup_flag;
+static volatile BOOL setup_flag = 0;
 
 BOOL APIENTRY DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 {
@@ -111,6 +112,7 @@ static DWORD WINAPI setup_console(LPVOID param)
 	AllocConsole();
 	freopen("CONOUT$","w",stdout);
 	freopen("CONIN$","r",stdin);
+	setup_flag = 1;
 	while(1)
 	{
 		MSG msg;
@@ -124,6 +126,5 @@ static DWORD WINAPI setup_console(LPVOID param)
 			}
 		}
 	}
-	setup_flag = 1;
 	return 0;
 }
